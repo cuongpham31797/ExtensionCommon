@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'ExtensionCommon'
-  spec.version      = '1.2.0'
+  spec.version      = '1.2.1'
   spec.summary      = 'Useful extension Swift function'
   spec.description  = 'The framework created to support developer with many useful extension function'
 
@@ -13,9 +13,10 @@ Pod::Spec.new do |spec|
   
   spec.platform     = :ios, '14.0'
 
-  spec.source       = { :git => 'https://github.com/cuongpham31797/ExtensionCommon.git', :tag => '1.2.0' }
+  spec.source       = { :git => 'https://github.com/cuongpham31797/ExtensionCommon.git', :tag => '1.2.1' }
 
   spec.source_files  = 'ExtensionCommon/**/*.swift'
   spec.swift_versions = '5.0'
-
+  spec.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  spec.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 end
