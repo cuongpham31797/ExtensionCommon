@@ -107,4 +107,36 @@ public extension UIView {
         mask.path = path.cgPath
         layer.mask = mask
     }
+    
+    func disableTab() {
+        CATransaction.begin()
+        let scale: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        scale.values = [1, 0.95, 1, 1.02, 1, 0.99, 1]
+        scale.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        let animGroup: CAAnimationGroup = CAAnimationGroup()
+        animGroup.animations = [scale]
+        animGroup.duration = 0.3
+        self.layer.add(animGroup, forKey: "pressAnimation")
+        CATransaction.commit()
+    }
+    
+    func shadow(color: CGColor? = nil,
+                opacity: Float? = nil,
+                offset: CGSize? = nil,
+                radius: CGFloat? = 6) {
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        if let shadowColor: CGColor = color {
+            self.layer.shadowColor = shadowColor
+        }
+        if let shadowOpacity: Float = opacity {
+            self.layer.shadowOpacity = shadowOpacity
+        }
+        if let shadowOffset: CGSize = offset {
+            self.layer.shadowOffset = shadowOffset
+        }
+        if let shadowRadius: CGFloat = radius {
+            self.layer.shadowRadius = shadowRadius
+        }
+        layer.masksToBounds = false
+    }
 }

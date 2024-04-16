@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'ExtensionCommon'
-  spec.version      = '1.2.3'
+  spec.version      = '1.2.4'
   spec.summary      = 'Useful extension Swift function'
   spec.description  = 'The framework created to support developer with many useful extension function'
 
