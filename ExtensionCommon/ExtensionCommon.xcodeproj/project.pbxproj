@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D6B5BC72BCE35FD00B40E2F /* GradientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B5BC62BCE35FD00B40E2F /* GradientLabel.swift */; };
 		8DFB500C2B1866BE00F08D90 /* ExtensionCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DFB500B2B1866BE00F08D90 /* ExtensionCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DFB50222B18673000F08D90 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFB50142B18673000F08D90 /* BaseViewModel.swift */; };
 		8DFB50232B18673000F08D90 /* BaseNibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFB50162B18673000F08D90 /* BaseNibView.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D6B5BC62BCE35FD00B40E2F /* GradientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLabel.swift; sourceTree = "<group>"; };
 		8DFB50082B1866BE00F08D90 /* ExtensionCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExtensionCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFB500B2B1866BE00F08D90 /* ExtensionCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionCommon.h; sourceTree = "<group>"; };
 		8DFB50142B18673000F08D90 /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				8DFB50162B18673000F08D90 /* BaseNibView.swift */,
+				8D6B5BC62BCE35FD00B40E2F /* GradientLabel.swift */,
 			);
 			path = UICommon;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D6B5BC72BCE35FD00B40E2F /* GradientLabel.swift in Sources */,
 				8DFB50292B18673000F08D90 /* String+Extension.swift in Sources */,
 				8DFB50222B18673000F08D90 /* BaseViewModel.swift in Sources */,
 				8DFB50282B18673000F08D90 /* UIView+Extension.swift in Sources */,
