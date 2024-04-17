@@ -8,6 +8,14 @@
 import Foundation
 import UIKit
 
+public enum GradientType {
+    case leftToRight
+    case rightToLeft
+    case topToBottom
+    case bottomToTop
+    case topLeftToBottomRight
+}
+
 public extension UIView {
     static func safeAreaTopPadding() -> CGFloat {
         let window: UIWindow? = UIApplication.shared.windows.first(where: {
@@ -30,21 +38,52 @@ public extension UIView {
         UIApplication.shared.keyFirstWindowActiveInactive?.bringSubviewToFront(self)
     }
     
-    func setGradient(colorTop: CGColor,
-                     colorBottom: CGColor,
-                     startPoint: CGPoint,
-                     endPoint: CGPoint,
-                     locations: [NSNumber] = [0.0, 0.8]) {
-        let gradientLayer: CAGradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
-        gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = locations
-        gradientLayer.startPoint = startPoint
-        gradientLayer.endPoint = endPoint
-        layer.addSublayer(gradientLayer)
-        layer.masksToBounds = true
+    func roundCorners(corners: UIRectCorner,
+                      radius: CGFloat) {
+        let path: UIBezierPath = UIBezierPath(roundedRect: bounds,
+                                              byRoundingCorners: corners,
+                                              cornerRadii: CGSize(width: radius,
+                                                                  height: radius))
+        let mask: CAShapeLayer = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
     }
     
+    func disableTab() {
+        CATransaction.begin()
+        let scale: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        scale.values = [1, 0.95, 1, 1.02, 1, 0.99, 1]
+        scale.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        let animGroup: CAAnimationGroup = CAAnimationGroup()
+        animGroup.animations = [scale]
+        animGroup.duration = 0.3
+        self.layer.add(animGroup, forKey: "pressAnimation")
+        CATransaction.commit()
+    }
+    
+    func shadow(color: CGColor? = nil,
+                opacity: Float? = nil,
+                offset: CGSize? = nil,
+                radius: CGFloat? = 6) {
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        if let shadowColor: CGColor = color {
+            self.layer.shadowColor = shadowColor
+        }
+        if let shadowOpacity: Float = opacity {
+            self.layer.shadowOpacity = shadowOpacity
+        }
+        if let shadowOffset: CGSize = offset {
+            self.layer.shadowOffset = shadowOffset
+        }
+        if let shadowRadius: CGFloat = radius {
+            self.layer.shadowRadius = shadowRadius
+        }
+        layer.masksToBounds = false
+    }
+}
+
+// MARK: - Dash Line
+extension UIView {
     func makeDashLineHorizontal(color: UIColor,
                                 strokeLength: NSNumber = 6,
                                 gapLength: NSNumber = 3,
@@ -96,47 +135,64 @@ public extension UIView {
         layer.addSublayer(borderLayer)
         layer.masksToBounds = true
     }
-    
-    func roundCorners(corners: UIRectCorner,
-                      radius: CGFloat) {
-        let path: UIBezierPath = UIBezierPath(roundedRect: bounds,
-                                              byRoundingCorners: corners,
-                                              cornerRadii: CGSize(width: radius,
-                                                                  height: radius))
-        let mask: CAShapeLayer = CAShapeLayer()
-        mask.path = path.cgPath
-        layer.mask = mask
+}
+
+// MARK: - Gradient
+extension UIView {
+    private func startToEnd(type: GradientType) -> (startPoint: CGPoint, endPoint: CGPoint) {
+        switch type {
+        case .leftToRight:
+            return (CGPoint(x: 0, y: 0.5), CGPoint(x: 1, y: 0.5))
+        case .rightToLeft:
+            return (CGPoint(x: 1, y: 0.5), CGPoint(x: 0, y: 0.5))
+        case .topToBottom:
+            return (CGPoint(x: 0.5, y: 0), CGPoint(x: 0.5, y: 1))
+        case .bottomToTop:
+            return (CGPoint(x: 0.5, y: 1), CGPoint(x: 0.5, y: 0))
+        case .topLeftToBottomRight:
+            return (CGPoint(x: 0, y: 0), CGPoint(x: 1, y: 1))
+        }
     }
     
-    func disableTab() {
-        CATransaction.begin()
-        let scale: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
-        scale.values = [1, 0.95, 1, 1.02, 1, 0.99, 1]
-        scale.timingFunction = CAMediaTimingFunction(name: .easeOut)
-        let animGroup: CAAnimationGroup = CAAnimationGroup()
-        animGroup.animations = [scale]
-        animGroup.duration = 0.3
-        self.layer.add(animGroup, forKey: "pressAnimation")
-        CATransaction.commit()
+    func setGradient(colorTop: CGColor,
+                     colorBottom: CGColor,
+                     startPoint: CGPoint,
+                     endPoint: CGPoint,
+                     locations: [NSNumber] = [0.0, 0.8]) {
+        let gradientLayer: CAGradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = locations
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        layer.addSublayer(gradientLayer)
+        layer.masksToBounds = true
     }
     
-    func shadow(color: CGColor? = nil,
-                opacity: Float? = nil,
-                offset: CGSize? = nil,
-                radius: CGFloat? = 6) {
-        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-        if let shadowColor: CGColor = color {
-            self.layer.shadowColor = shadowColor
+    func setSpecificGradient(type: GradientType,
+                             colors: [CGColor],
+                             in rect: CGRect? = nil,
+                             cornerRadius: CGFloat = 0,
+                             locations: [NSNumber] = []) {
+        let gradientLayer: CAGradientLayer = CAGradientLayer()
+        gradientLayer.colors = colors
+        let point: (startPoint: CGPoint, endPoint: CGPoint) = startToEnd(type: type)
+        gradientLayer.startPoint = point.startPoint
+        gradientLayer.endPoint = point.endPoint
+        if !locations.isEmpty {
+            gradientLayer.locations = locations
         }
-        if let shadowOpacity: Float = opacity {
-            self.layer.shadowOpacity = shadowOpacity
+        if rect != nil {
+            gradientLayer.frame = rect!
+        } else {
+            gradientLayer.frame = self.bounds
         }
-        if let shadowOffset: CGSize = offset {
-            self.layer.shadowOffset = shadowOffset
+        if cornerRadius != 0 {
+            gradientLayer.cornerRadius = cornerRadius
+        } else {
+            gradientLayer.cornerRadius = self.layer.cornerRadius
         }
-        if let shadowRadius: CGFloat = radius {
-            self.layer.shadowRadius = shadowRadius
-        }
-        layer.masksToBounds = false
+        
+        self.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
