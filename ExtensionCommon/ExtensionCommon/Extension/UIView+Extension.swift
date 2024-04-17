@@ -54,10 +54,10 @@ public extension UIView {
         let scale: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
         scale.values = [1, 0.95, 1, 1.02, 1, 0.99, 1]
         scale.timingFunction = CAMediaTimingFunction(name: .easeOut)
-        let animGroup: CAAnimationGroup = CAAnimationGroup()
-        animGroup.animations = [scale]
-        animGroup.duration = 0.3
-        self.layer.add(animGroup, forKey: "pressAnimation")
+        let animationGroup: CAAnimationGroup = CAAnimationGroup()
+        animationGroup.animations = [scale]
+        animationGroup.duration = 0.3
+        self.layer.add(animationGroup, forKey: "pressAnimation")
         CATransaction.commit()
     }
     
@@ -83,7 +83,7 @@ public extension UIView {
 }
 
 // MARK: - Dash Line
-extension UIView {
+public extension UIView {
     func makeDashLineHorizontal(color: UIColor,
                                 strokeLength: NSNumber = 6,
                                 gapLength: NSNumber = 3,
@@ -138,7 +138,7 @@ extension UIView {
 }
 
 // MARK: - Gradient
-extension UIView {
+public extension UIView {
     private func startToEnd(type: GradientType) -> (startPoint: CGPoint, endPoint: CGPoint) {
         switch type {
         case .leftToRight:

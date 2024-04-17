@@ -27,7 +27,7 @@ public class GradientLabel: UILabel {
             currentContext?.restoreGState()
         }
 
-        let size = rect.size
+        let size: CGSize = rect.size
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         guard let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(),
                                         colors: colors as CFArray,
@@ -39,10 +39,9 @@ public class GradientLabel: UILabel {
                                     start: CGPoint(x: 0, y: size.height * 0.2),
                                     end: CGPoint(x: 0, y: size.height * 0.9),
                                     options: [])
-        let gradientImage = UIGraphicsGetImageFromCurrentImageContext()
+        let gradientImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         guard let image = gradientImage else { return nil }
         return UIColor(patternImage: image)
     }
-
 }
