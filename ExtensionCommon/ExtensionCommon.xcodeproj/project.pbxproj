@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8D6B5BC72BCE35FD00B40E2F /* GradientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B5BC62BCE35FD00B40E2F /* GradientLabel.swift */; };
+		8D83A8022BCFB5A400A129E5 /* TagCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83A7FD2BCFB5A400A129E5 /* TagCollectionView.swift */; };
+		8D83A8032BCFB5A400A129E5 /* TagItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83A7FE2BCFB5A400A129E5 /* TagItemCell.swift */; };
+		8D83A8042BCFB5A400A129E5 /* TagItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83A7FF2BCFB5A400A129E5 /* TagItemCell.xib */; };
+		8D83A8052BCFB5A400A129E5 /* TagViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83A8002BCFB5A400A129E5 /* TagViewLayout.swift */; };
 		8DD26ED72BCE4F1F00E50097 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD26ED62BCE4F1F00E50097 /* UIViewController+Extension.swift */; };
 		8DFB500C2B1866BE00F08D90 /* ExtensionCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DFB500B2B1866BE00F08D90 /* ExtensionCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DFB50222B18673000F08D90 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFB50142B18673000F08D90 /* BaseViewModel.swift */; };
@@ -26,6 +30,10 @@
 
 /* Begin PBXFileReference section */
 		8D6B5BC62BCE35FD00B40E2F /* GradientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLabel.swift; sourceTree = "<group>"; };
+		8D83A7FD2BCFB5A400A129E5 /* TagCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionView.swift; sourceTree = "<group>"; };
+		8D83A7FE2BCFB5A400A129E5 /* TagItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagItemCell.swift; sourceTree = "<group>"; };
+		8D83A7FF2BCFB5A400A129E5 /* TagItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagItemCell.xib; sourceTree = "<group>"; };
+		8D83A8002BCFB5A400A129E5 /* TagViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewLayout.swift; sourceTree = "<group>"; };
 		8DD26ED62BCE4F1F00E50097 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		8DFB50082B1866BE00F08D90 /* ExtensionCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExtensionCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFB500B2B1866BE00F08D90 /* ExtensionCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionCommon.h; sourceTree = "<group>"; };
@@ -54,6 +62,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D83A8012BCFB5A400A129E5 /* TagView */ = {
+			isa = PBXGroup;
+			children = (
+				8D83A7FD2BCFB5A400A129E5 /* TagCollectionView.swift */,
+				8D83A7FE2BCFB5A400A129E5 /* TagItemCell.swift */,
+				8D83A7FF2BCFB5A400A129E5 /* TagItemCell.xib */,
+				8D83A8002BCFB5A400A129E5 /* TagViewLayout.swift */,
+			);
+			path = TagView;
+			sourceTree = "<group>";
+		};
 		8DFB4FFE2B1866BE00F08D90 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +111,7 @@
 		8DFB50152B18673000F08D90 /* UICommon */ = {
 			isa = PBXGroup;
 			children = (
+				8D83A8012BCFB5A400A129E5 /* TagView */,
 				8DFB50162B18673000F08D90 /* BaseNibView.swift */,
 				8D6B5BC62BCE35FD00B40E2F /* GradientLabel.swift */,
 			);
@@ -185,6 +205,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D83A8042BCFB5A400A129E5 /* TagItemCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,10 +218,13 @@
 			files = (
 				8D6B5BC72BCE35FD00B40E2F /* GradientLabel.swift in Sources */,
 				8DFB50292B18673000F08D90 /* String+Extension.swift in Sources */,
+				8D83A8022BCFB5A400A129E5 /* TagCollectionView.swift in Sources */,
 				8DFB50222B18673000F08D90 /* BaseViewModel.swift in Sources */,
 				8DFB50282B18673000F08D90 /* UIView+Extension.swift in Sources */,
+				8D83A8052BCFB5A400A129E5 /* TagViewLayout.swift in Sources */,
 				8DD26ED72BCE4F1F00E50097 /* UIViewController+Extension.swift in Sources */,
 				8DFB50262B18673000F08D90 /* JSONEncoder+Extension.swift in Sources */,
+				8D83A8032BCFB5A400A129E5 /* TagItemCell.swift in Sources */,
 				8DFB50242B18673000F08D90 /* UIApplication+Extension.swift in Sources */,
 				8DFB50232B18673000F08D90 /* BaseNibView.swift in Sources */,
 				8DFB502B2B18673000F08D90 /* UICollectionView+Extension.swift in Sources */,
